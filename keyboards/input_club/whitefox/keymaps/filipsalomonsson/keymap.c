@@ -16,6 +16,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include QMK_KEYBOARD_H
 
+// Tap Dance declarations
+enum {
+    TD_SFT_HYPER,
+};
+// Tap Dance definitions
+tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Shift, twice for Hyper
+    [TD_SFT_HYPER] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_HYPR),
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
      * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
@@ -34,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,  KC_1,         KC_2,         KC_3,         KC_4,         KC_5, KC_6,         KC_7,         KC_8,         KC_9,         KC_0,            KC_MINS, KC_EQL,  KC_GRV, KC_BSLS, KC_NO,
         KC_TAB,  KC_Q,         KC_W,         KC_E,         KC_R,         KC_T, KC_Y,         KC_U,         KC_I,         KC_O,         KC_P,    KC_LBRC, KC_RBRC, KC_BSPC,         KC_DEL,
         KC_LGUI, LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G, KC_H,         RCTL_T(KC_J), RALT_T(KC_K), RSFT_T(KC_L), RGUI_T(KC_SCLN), KC_QUOT,     KC_ENT,               KC_PGUP,
-        KC_LSFT,               KC_Z,         KC_X,         KC_C,         KC_V, KC_B,         KC_N,         KC_M,         KC_COMM,      KC_DOT,          KC_SLSH, KC_RSFT,     KC_UP,       KC_PGDN,
+        TD(0),               KC_Z,         KC_X,         KC_C,         KC_V, KC_B,         KC_N,         KC_M,         KC_COMM,      KC_DOT,          KC_SLSH, KC_RSFT,     KC_UP,       KC_PGDN,
         KC_LCTL, KC_LALT,      KC_LGUI,                                        LT(2,KC_SPC),                             MO(1),        KC_RGUI,                      KC_LEFT, KC_DOWN,     KC_RGHT
     ),
 
